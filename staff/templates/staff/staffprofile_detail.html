@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block head_title %}Employee Detail {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+<h1>Employee Detail</h1>
+<br/>
+<h1>{{ object.first_name }}</h1>
+<h1>{{ object.last_name }}</h1>
+<br/>
+<p>{{ object.profile_timestamp }}, Updated {{ object.profile_updated|timesince }} ago</p>
+
+{% endblock %}
