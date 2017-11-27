@@ -11,7 +11,6 @@ class StaffListView(ListView):
 
 
 class StaffDetailView(DetailView):
-
     queryset = StaffProfile.objects.all()
 
 

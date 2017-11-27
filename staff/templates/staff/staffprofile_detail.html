@@ -7,6 +7,8 @@
 <h1>{{ object.first_name }}</h1>
 <h1>{{ object.last_name }}</h1>
 <br/>
-<p>{{ object.profile_timestamp }}, Updated {{ object.profile_updated|timesince }} ago</p>
+<p>Created {{ object.profile_timestamp }}, <br/>Last Updated {{ object.profile_updated|timesince }} ago</p>
+
+
 
 {% endblock %}

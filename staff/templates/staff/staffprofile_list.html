@@ -7,9 +7,8 @@
 <ul>
     {% for name in object_list %}
 
-    <li><a href="{{ name.get_absolute_url }}">{{ name }}</a><br/>
-        {{ name.first_name }}  {{ name.last_name }} {{ name.profile_timestamp }} {{ name.profile_updated }}</li>
-    </br>
+    <li><a href="{{ name.get_absolute_url }}">{{ name }}</a></li>
+
     {% endfor %}
 
 </ul>
