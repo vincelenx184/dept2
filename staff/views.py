@@ -1,5 +1,5 @@
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import StaffProfile
 from django.shortcuts import render, get_object_or_404
 from .forms import StaffProfileCreateForm
@@ -22,6 +22,14 @@ class StaffCreateView(CreateView):
         instance = form.save()
         instance.save()
         return super(StaffCreateView, self).form_valid(form)
+
+
+class StaffUpdateView(UpdateView):
+    form_class = StaffProfileCreateForm
+    template_name = "staff/detail-update.html"
+
+    queryset = StaffProfile.objects.all()
+
 
 
 
