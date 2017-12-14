@@ -2,8 +2,15 @@
     {{ form.errors.non_field_errors }}
 {% endif %}
 
+
 <form method="POST"> {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save</button>
 </form>
+
+<form action="{% url 'staff:delete' pk=staffprofile.id %}" method="POST">
+  {% csrf_token %}
+    <a href="{% url 'staff:delete' pk=staffprofile.id %}"><input type="submit" value="Delete" /></a>
+</form>
+
 

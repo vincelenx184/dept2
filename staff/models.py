@@ -17,6 +17,8 @@ class StaffProfile(models.Model):
     def get_absolute_url(self):
         return reverse("staff:detail", kwargs={"slug": self.slug})
 
+
+
     @property
     def title(self):
         return self.first_name

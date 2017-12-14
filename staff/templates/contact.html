@@ -1,0 +1,13 @@
+<h1>This works</h1>
+
+{% if object_list %}
+    {% for i in object_list %}
+        <li>{{ i }}</li>
+        {{i.first_name}}
+        {{i.last_name}}
+    {% endfor %}
+{% else %}
+<h4>Doesn't exists</h4>
+{% endif %}
+
+
