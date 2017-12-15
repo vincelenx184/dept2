@@ -17,11 +17,9 @@ class StaffProfile(models.Model):
     def get_absolute_url(self):
         return reverse("staff:detail", kwargs={"slug": self.slug})
 
-
-
     @property
     def title(self):
-        return self.first_name
+        return self.first_name  # this adds the ability to change it to obj.title
 
 
 def rl_pre_save_receiver(sender, instance, *args, **kwargs):

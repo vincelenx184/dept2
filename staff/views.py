@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.views import View
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import StaffProfile
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import StaffProfileCreateForm
@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 
 class StaffListView(ListView):
     def get_queryset(self):
+        print(self.kwargs)
         return StaffProfile.objects.all()
 
 
@@ -111,8 +112,15 @@ class StaffDeleteView(DeleteView):
 #         return queryset
 #
 #
-# class SearchContactDetailView(DetailView):
-#     pass
+
+
+class PractDetailView(DetailView):
+    queryset = StaffProfile.objects.all()
+
+    def get_object(self, *args, **kwargs):
+        pract_id = self.kwargs.get("pract_id")
+        obj = get_object_or_404(StaffProfile, id=pract_id)
+        return obj
 
 
 
