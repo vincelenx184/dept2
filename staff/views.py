@@ -9,13 +9,13 @@ from django.urls import reverse_lazy
 
 class StaffListView(ListView):
     def get_queryset(self):
-        print(self.kwargs)
         return StaffProfile.objects.all()
 
 
 class StaffCreateView(CreateView):
     form_class = StaffProfileCreateForm
     template_name = "staff/form.html"
+    success_url = reverse_lazy("staff:list")
 
     def form_valid(self, form):
         instance = form.save()
