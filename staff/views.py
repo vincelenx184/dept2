@@ -113,7 +113,7 @@ class StaffDeleteView(DeleteView):
 #
 #
 
-
+#
 class PractDetailView(DetailView):
     queryset = StaffProfile.objects.all()
 
