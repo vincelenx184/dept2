@@ -35,10 +35,6 @@ class StaffDeleteView(DeleteView):
     success_url = reverse_lazy("staff:list")
 
 
-
-
-
-
 # def staff_delete(request, slug):
 #     staffemp = get_object_or_404(StaffProfile, slug=slug)
 #
@@ -113,7 +109,6 @@ class StaffDeleteView(DeleteView):
 #
 #
 
-#
 class PractDetailView(DetailView):
     queryset = StaffProfile.objects.all()
 

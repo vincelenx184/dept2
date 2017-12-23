@@ -14,6 +14,7 @@ urlpatterns = [
     # practice urls and slug round 2 from cfe
 
     url(r'^practice/(?P<pract_id>[\w-]+)/$', PractDetailView.as_view()),
+    url(r'^practice/create/$', )
 
 ]
 
