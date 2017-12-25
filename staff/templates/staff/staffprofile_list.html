@@ -15,7 +15,7 @@
 
     {% for obj in object_list %}
 
-        <li><a href="/staff/practice/{{ obj.id }}/">{{ obj }}</a></li>
+        <li><a href="{% url 'staff:list' %}">{{ obj }}</a></li>
 
     {% endfor %}
 </ul>

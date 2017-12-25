@@ -1,7 +1,7 @@
 from django.conf.urls import url
-from . import views
 
-from .views import (StaffListView, StaffCreateView, StaffUpdateView, StaffDeleteView, PractDetailView)
+
+from .views import (StaffListView, StaffCreateView, StaffUpdateView, StaffDeleteView, PractCreate)
 
 
 urlpatterns = [
@@ -13,8 +13,12 @@ urlpatterns = [
 
     # practice urls and slug round 2 from cfe
 
-    url(r'^practice/(?P<pract_id>[\w-]+)/$', PractDetailView.as_view()),
-    url(r'^practice/create/$', )
+    #   url(r'^practice/(?P<pract_id>[\w-]+)/$', PractDetailView.as_view()),
+    #   url(r'^practice/create/$', pract_create),
+
+
+    url(r'^practice/create/$', PractCreate.as_view(), name="pract-create"),
+
 
 ]
 

@@ -1,8 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import StaffProfile
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from .forms import StaffProfileCreateForm
 from django.urls import reverse_lazy
 
@@ -12,7 +13,7 @@ class StaffListView(ListView):
         return StaffProfile.objects.all()
 
 
-class StaffCreateView(CreateView):
+class StaffCreateView(LoginRequiredMixin, CreateView):
     form_class = StaffProfileCreateForm
     template_name = "staff/form.html"
     success_url = reverse_lazy("staff:list")
@@ -109,13 +110,51 @@ class StaffDeleteView(DeleteView):
 #
 #
 
-class PractDetailView(DetailView):
-    queryset = StaffProfile.objects.all()
+# class PractDetailView(DetailView):
+#     queryset = StaffProfile.objects.all()
+#
+#     def get_object(self, *args, **kwargs):
+#         pract_id = self.kwargs.get("pract_id")
+#         obj = get_object_or_404(StaffProfile, id=pract_id)
+#         return obj
 
-    def get_object(self, *args, **kwargs):
-        pract_id = self.kwargs.get("pract_id")
-        obj = get_object_or_404(StaffProfile, id=pract_id)
-        return obj
+
+# def pract_create(request):
+#
+#     form = StaffProfileCreateForm(request.POST or None)
+#     errors = None
+#
+#     if form.is_valid():
+#         if request.user.is_authenticated():
+#             instance = form.save(commit=False)
+#
+#             instance.owner = request.user
+#             instance.save()
+#
+#             return HttpResponseRedirect("/staff/")
+#
+#         else:
+#             return HttpResponseRedirect("/login/")
+#
+#     if form.errors:
+#         errors = form.errors
+#
+#     template_name = "staff/form.html"
+#     context = {"form": form, "errors": errors}
+#     return render(request, template_name, context)
+
+
+class PractCreate(LoginRequiredMixin, CreateView):
+    form_class = StaffProfileCreateForm
+    template_name = "staff/form.html"
+    success_url = reverse_lazy("staff:list")
+
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        #instance.save() # This save is already done with the form_valid method in django back ends files
+        return super().form_valid(form)
 
 
 
