@@ -10,12 +10,20 @@ class Appraisal(models.Model):
     employee = models.ForeignKey(StaffProfile)
     # actual appraisal
     overall_rating = models.CharField(max_length=120)
-    positive_qualities = models.TextField
-    negative_qualities = models.TextField
+    positive_qualities = models.TextField(blank=True)
+    negative_qualities = models.TextField(blank=True)
     public = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-updated', '-timestamp']
+
+    def __str__(self):
+        return self.employee.first_name
+
+    
+
+
+
 
