@@ -22,7 +22,7 @@ class Appraisal(models.Model):
     def __str__(self):
         return self.employee.first_name
 
-    
+
 
 
 
