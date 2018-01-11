@@ -10,6 +10,9 @@ urlpatterns = [
     url(r'^logout/$', LogoutView.as_view(), name="logout"),
     url(r'^$', TemplateView.as_view(template_name="home.html"), name="home"),
     url(r'^staff/', include('staff.urls', namespace='staff')),
+    url(r'^appraisal/', include('review.urls', namespace='review')),
 ]
+
+
 
 

@@ -19,9 +19,9 @@ class StaffCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("staff:list")
 
     def form_valid(self, form):
-        instance = form.save()
-        instance.save()
-        return super(StaffCreateView, self).form_valid(form)
+        instance = form.save(commit=False)
+        instance.owner = self.request.user
+        return super().form_valid(form)
 
 
 class StaffUpdateView(UpdateView):

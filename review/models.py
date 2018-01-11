@@ -22,6 +22,14 @@ class Appraisal(models.Model):
     def __str__(self):
         return self.employee.first_name
 
+    def get_positive_q(self):
+        return self.positive_qualities.split(",")
+
+    def get_negative_q(self):
+        return self.negative_qualities.split(",")
+
+
+
 
 
 
