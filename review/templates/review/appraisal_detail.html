@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block head_title %}Employee Review {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+<h1>{{ object.employee }}'s Review</h1>
+<br/>
+<ul>
+
+
+
+        {% if object.positive_qualities %}
+
+        Positive Qualities
+        <ul>
+            {% for item in object.get_positive_q %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        {% endif %}
+
+        {% if object.negative_qualities %}
+        Negative Qualities
+        <ul>
+            {% for item in object.get_negative_q %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+
+    <!--<h1>This is the second list</h1>-->
+
+    <!--{% for obj in object_list %}-->
+
+        <!--<li><a href="{% url 'staff:list' %}">{{ obj }}</a></li>-->
+
+    <!--{% endfor %}-->
+</ul>
+
+{% endblock %}

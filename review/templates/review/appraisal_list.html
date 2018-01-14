@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block head_title %}Review List {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+<h1>Review List</h1>
+<br/>
+<ul>
+{% for obj in object_list %}
+
+    <li><a href="{{ obj.get_absolute_url }}">{{ obj.employee }}</a><br/>
+
+{% endfor %}
+
+    <!--<h1>This is the second list</h1>-->
+
+    <!--{% for obj in object_list %}-->
+
+        <!--<li><a href="{% url 'staff:list' %}">{{ obj }}</a></li>-->
+
+    <!--{% endfor %}-->
+</ul>
+
+{% endblock %}

@@ -13,6 +13,8 @@
 
     <h1>This is the second list</h1>
 
+    <!--wonder why there is a second list?..2 diff ways for reverse lookup. get_absolute is the best-->
+
     {% for obj in object_list %}
 
         <li><a href="{% url 'staff:list' %}">{{ obj }}</a></li>

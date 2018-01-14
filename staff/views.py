@@ -15,13 +15,19 @@ class StaffListView(ListView):
 
 class StaffCreateView(LoginRequiredMixin, CreateView):
     form_class = StaffProfileCreateForm
-    template_name = "staff/form.html"
+    template_name = "form.html"
     success_url = reverse_lazy("staff:list")
 
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.owner = self.request.user
         return super().form_valid(form)
+
+    # this was made so we can use the same form.html file in different apps
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["title"] = "Add Employee"
+        return context
 
 
 class StaffUpdateView(UpdateView):

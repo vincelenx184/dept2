@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from django.core.urlresolvers import reverse
+
 
 from staff.models import StaffProfile
 
@@ -15,6 +17,9 @@ class Appraisal(models.Model):
     public = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("review:detail", kwargs={"pk": self.pk})
 
     class Meta:
         ordering = ['-updated', '-timestamp']
