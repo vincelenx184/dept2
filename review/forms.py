@@ -1,5 +1,5 @@
 from django import forms
-
+from staff.models import StaffProfile
 from .models import Appraisal
 
 
@@ -14,3 +14,17 @@ class AppraisalForm(forms.ModelForm):
             "public",
 
         ]
+
+    def __init__(self, user=None, *args, **kwargs):
+        print(user)
+        super().__init__(*args, **kwargs)
+        self.fields["employee"].queryset = StaffProfile.objects.filter(owner=user) #.exclude(appraisal__isnull=False)
+
+
+
+
+
+
+
+
+
