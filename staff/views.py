@@ -24,8 +24,8 @@ class StaffCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     # this was made so we can use the same form.html file in different apps
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context["title"] = "Add Employee"
         return context
 
