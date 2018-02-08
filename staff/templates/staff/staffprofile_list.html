@@ -3,12 +3,16 @@
 
 {% block content %}
 <h1>Employee List using reverse url. (recommended)</h1>
+<small><a href='{% url "staff:create" %}'>Add</a></small>
 <br/>
 <ul>
     {% for name in object_list %}
 
     <li><a href="{{ name.get_absolute_url }}">{{ name }}</a></li>
 
+
+    {% empty %}
+    <li><a href='{% url "staff:create" %}'>Add</a></li>
     {% endfor %}
 
     <h1>This is the second list not using a reverse url</h1>
@@ -18,6 +22,9 @@
     {% for obj in object_list %}
 
         <li><a href="{% url 'staff:list' %}">{{ obj }}</a></li>
+    {% empty %}
+        <li><a href="{% url 'staff:create' %}">Add</a></li>
+
 
     {% endfor %}
 </ul>

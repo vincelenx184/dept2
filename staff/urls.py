@@ -7,7 +7,7 @@ from .views import (StaffListView, StaffCreateView, StaffUpdateView, StaffDelete
 urlpatterns = [
     url(r'^$', StaffListView.as_view(), name='list'),
     url(r'^create/$', StaffCreateView.as_view(), name="create"),
-    url(r'^(?P<slug>[\w-]+)/$', StaffUpdateView.as_view(), name="detail"),
+    url(r'^(?P<slug>[\w-]+)/edit/$', StaffUpdateView.as_view(), name="detail"),
     url(r'^delete/(?P<pk>\d+)/$', StaffDeleteView.as_view(), name="delete"),
 
 

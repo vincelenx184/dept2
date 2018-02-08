@@ -8,9 +8,9 @@ from .forms import StaffProfileCreateForm
 from django.urls import reverse_lazy
 
 
-class StaffListView(ListView):
+class StaffListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
-        return StaffProfile.objects.all()
+        return StaffProfile.objects.filter(owner=self.request.user)
 
 
 class StaffCreateView(LoginRequiredMixin, CreateView):

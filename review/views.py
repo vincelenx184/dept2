@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Appraisal
 from .forms import AppraisalForm
+from django.urls import reverse_lazy
 
 
 class AppraisalListView(ListView):
@@ -11,10 +12,10 @@ class AppraisalListView(ListView):
         return Appraisal.objects.filter(user=self.request.user)
 
 
-class AppraisalDetailView(DetailView):
-
-    def get_queryset(self):
-        return Appraisal.objects.filter(user=self.request.user)
+# class AppraisalDetailView(DetailView):
+#
+#     def get_queryset(self):
+#         return Appraisal.objects.filter(user=self.request.user)
 
 
 class AppraisalCreateView(LoginRequiredMixin, CreateView):
@@ -41,7 +42,7 @@ class AppraisalCreateView(LoginRequiredMixin, CreateView):
 
 
 class AppraisalUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = "form.html"
+    template_name = "review/detail-update.html"
     form_class = AppraisalForm
 
     def get_queryset(self):
@@ -56,3 +57,9 @@ class AppraisalUpdateView(LoginRequiredMixin, UpdateView):
         kwargs = super().get_form_kwargs()
         kwargs["user"] = self.request.user
         return kwargs
+
+
+class AppraisalDeleteView(DeleteView):
+    model = Appraisal
+    template_name = "review/detail-update.html"
+    success_url = reverse_lazy("review:list")

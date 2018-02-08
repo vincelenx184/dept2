@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block head_title %}Employee Review {{ block.super}}{% endblock head_title %}
+
+{% block content %}
+<h1>{{ form.instance.employee }}'s Review</h1>
+<br/>
+<hr>
+
+
+
+        {% if form.instance.positive_qualities %}
+
+        Positive Qualities
+        <ul>
+            {% for item in form.instance.get_positive_q %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        {% endif %}
+
+        {% if form.instance.negative_qualities %}
+        Negative Qualities
+        <ul>
+            {% for item in form.instance.get_negative_q %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+</hr>
+<h3>Make Changes</h3>
+
+{% include "review/update-form.html" with form=form %}
+
+
+</ul>
+
+{% endblock %}
